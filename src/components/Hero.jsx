@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Typewriter from './Typewriter';
 
-function Hero({ data }) {
+function Hero({ data, lang, t }) {
   const { name, words, bio, github, linkedin, twitter, avatar } = data;
   const [imageError, setImageError] = useState(false);
 
@@ -9,21 +9,22 @@ function Hero({ data }) {
     <section id="home" className="hero-section">
       <div className="container hero-grid">
         <div className="hero-content">
-          <div className="badge-welcome">Halo, Selamat Datang!</div>
+          <div className="badge-welcome">{lang === 'id' ? 'Halo, Selamat Datang!' : 'Hello, Welcome!'}</div>
           <h1>
             Saya <span className="gradient-text">{name}</span>
           </h1>
           <h2 className="hero-subtitle">
-            Seorang <Typewriter words={words} speed={100} delay={2000} />
+            {lang === 'id' ? 'Seorang ' : 'A '}
+            <Typewriter key={lang} words={words} speed={100} delay={2000} />
           </h2>
           <p className="hero-desc">{bio}</p>
 
           <div className="hero-actions">
             <a href="#contact" className="btn btn-primary" id="cta-contact">
-              Hubungi Saya
+              {lang === 'id' ? 'Hubungi Saya' : 'Contact Me'}
             </a>
             <a href="#projects" className="btn btn-secondary" id="cta-projects">
-              Lihat Proyek
+              {lang === 'id' ? 'Lihat Proyek' : 'View Projects'}
             </a>
             {/* Tombol Download CV */}
             <a

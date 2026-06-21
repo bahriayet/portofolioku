@@ -181,30 +181,29 @@ const getSkillDetails = (name) => {
   };
 };
 
-function About({ skills, bio }) {
+function About({ skills, bio, lang, t }) {
   return (
     <section id="about" className="about-section">
       <div className="container">
         <Reveal>
-          <h2 className="section-title">Tentang Saya</h2>
+          <h2 className="section-title">{t.aboutHeading}</h2>
         </Reveal>
         <div className="about-grid">
           <Reveal direction="left" delay={100}>
             <div className="about-bio glass-panel">
-              <h3>Siapa saya?</h3>
+              <h3>{lang === 'id' ? 'Siapa saya?' : 'Who am I?'}</h3>
               <p>{bio}</p>
               <p style={{ marginTop: '1rem' }}>
-                Saya percaya bahwa baris kode yang berkualitas dikombinasikan dengan sentuhan seni
-                desain adalah kunci utama dalam membangun produk web yang unggul. Saya selalu siap
-                menghadapi tantangan baru dan terus memperbarui keahlian mengikuti perkembangan
-                tren teknologi.
+                {lang === 'id'
+                  ? 'Saya percaya bahwa baris kode yang berkualitas dikombinasikan dengan sentuhan seni desain adalah kunci utama dalam membangun produk web yang unggul. Saya selalu siap menghadapi tantangan baru dan terus memperbarui keahlian mengikuti perkembangan tren teknologi.'
+                  : 'I believe that quality code combined with a touch of design artistry is the key to building outstanding web products. I am always ready to face new challenges and continuously update my skills to keep up with the latest technological trends.'}
               </p>
             </div>
           </Reveal>
 
           <Reveal direction="right" delay={200}>
             <div className="about-skills glass-panel">
-              <h3>Keahlian Teknis</h3>
+              <h3>{lang === 'id' ? 'Keahlian Teknis' : 'Technical Skills'}</h3>
               <div className="skills-container">
                 {Object.entries(skills).map(([category, items]) => (
                   <div key={category} className="skill-category">
@@ -213,7 +212,7 @@ function About({ skills, bio }) {
                         ? 'Frontend'
                         : category === 'backend'
                         ? 'Backend'
-                        : 'Tools & Lainnya'}
+                        : lang === 'id' ? 'Peralatan & Lainnya' : 'Tools & Others'}
                     </h4>
                     <div className="skills-grid-new">
                       {items.map((skill) => {

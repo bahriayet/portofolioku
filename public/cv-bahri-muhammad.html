@@ -279,17 +279,22 @@
         <line x1="19" y1="12" x2="5" y2="12" />
         <polyline points="12 19 5 12 12 5" />
       </svg>
-      Kembali ke Portfolio
+      <span id="back-btn-text">Kembali ke Portfolio</span>
     </a>
-    <button onclick="downloadPDF()" class="btn-action" id="btn-download-pdf">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="7 10 12 15 17 10" />
-        <line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-      Download PDF
-    </button>
+    <div style="display: flex; gap: 0.5rem;">
+      <button onclick="toggleLanguage()" class="btn-action btn-back" id="btn-lang-toggle" style="font-weight: 700; width: 45px; justify-content: center; padding: 0.6rem 0;">
+        EN
+      </button>
+      <button onclick="downloadPDF()" class="btn-action" id="btn-download-pdf">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        <span id="download-btn-text">Download PDF</span>
+      </button>
+    </div>
   </div>
 
   <div class="cv-container">
@@ -342,8 +347,8 @@
     </div>
 
     <div class="section">
-      <h2 class="section-title">Ringkasan Profesional</h2>
-      <p class="bio-text">
+      <h2 class="section-title" data-en="Professional Summary">Ringkasan Profesional</h2>
+      <p class="bio-text" data-en="I am a passionate Full-Stack Developer specializing in building modern web applications and IoT solutions. I am experienced in using TypeScript, React, and Node.js to create interactive, user-friendly, and centralized software solutions.">
         Saya adalah seorang Full-Stack Developer yang antusias dalam mengembangkan aplikasi web modern dan IoT. Saya
         berpengalaman menggunakan TypeScript, React, dan Node.js untuk membangun solusi terpusat yang interaktif dan
         ramah pengguna.
@@ -351,7 +356,7 @@
     </div>
 
     <div class="section">
-      <h2 class="section-title">Pengalaman Kerja</h2>
+      <h2 class="section-title" data-en="Work Experience">Pengalaman Kerja</h2>
 
       <div class="timeline-item">
         <div class="timeline-header">
@@ -359,9 +364,9 @@
             <span class="role-title">Senior Full-Stack Developer</span> — <span class="company-name">Solusi Digital
               Kreatif</span>
           </div>
-          <div class="timeline-date">2024 - Sekarang</div>
+          <div class="timeline-date" data-en="2024 - Present">2024 - Sekarang</div>
         </div>
-        <p class="timeline-desc">
+        <p class="timeline-desc" data-en="Led a developer team to redesign the core e-commerce portal using React.js, improving Web Vitals scores by 40% and integrating local payment gateways.">
           Memimpin tim pengembang untuk mendesain ulang portal e-commerce utama dengan React.js, meningkatkan skor web
           vitals sebesar 40%, serta mengintegrasikan API pembayaran lokal.
         </p>
@@ -373,9 +378,9 @@
             <span class="role-title">TypeScript Developer</span> — <span class="company-name">Nusantara
               Technology</span>
           </div>
-          <div class="timeline-date">2022 - 2024</div>
+          <div class="timeline-date" data-en="2022 - 2024">2022 - 2024</div>
         </div>
-        <p class="timeline-desc">
+        <p class="timeline-desc" data-en="Built a real-time internal IoT (Internet of Things) dashboard using Node.js and WebSockets. Optimized database queries to efficiently handle millions of data rows.">
           Membangun dashboard internal IoT (Internet of Things) real-time menggunakan Node.js dan WebSockets.
           Mengoptimalkan query database untuk penanganan data jutaan baris.
         </p>
@@ -386,9 +391,9 @@
           <div>
             <span class="role-title">Junior Web Developer</span> — <span class="company-name">Pilar Digital Utama</span>
           </div>
-          <div class="timeline-date">2020 - 2022</div>
+          <div class="timeline-date" data-en="2020 - 2022">2020 - 2022</div>
         </div>
-        <p class="timeline-desc">
+        <p class="timeline-desc" data-en="Handled CMS integrations, corporate landing page development, bug fixes, and SEO optimization for client websites.">
           Mengerjakan integrasi CMS, pengembangan landing page perusahaan, pemeliharaan bug, serta optimasi SEO pada
           website klien.
         </p>
@@ -396,7 +401,7 @@
     </div>
 
     <div class="section">
-      <h2 class="section-title">Keahlian Teknikal</h2>
+      <h2 class="section-title" data-en="Technical Skills">Keahlian Teknikal</h2>
       <div class="skills-grid">
         <div>
           <div class="skill-category-title">Frontend</div>
@@ -422,7 +427,7 @@
       </div>
 
       <div class="skill-group" style="margin-top: 1rem;">
-        <div class="skill-category-title">Peralatan (Tools) & Lainnya</div>
+        <div class="skill-category-title" data-en="Tools & Others">Peralatan (Tools) & Lainnya</div>
         <div class="skill-list">
           <span class="skill-tag">Git & GitHub</span>
           <span class="skill-tag">VS Code</span>
@@ -470,6 +475,33 @@
         btn.innerHTML = originalText;
         window.print();
       }
+    }
+
+    let currentLang = 'id';
+    function toggleLanguage() {
+      currentLang = currentLang === 'id' ? 'en' : 'id';
+      
+      const langBtn = document.getElementById('btn-lang-toggle');
+      langBtn.innerText = currentLang === 'id' ? 'EN' : 'ID';
+      
+      const backBtnText = document.getElementById('back-btn-text');
+      backBtnText.innerText = currentLang === 'id' ? 'Kembali ke Portfolio' : 'Back to Portfolio';
+      
+      const downloadBtnText = document.getElementById('download-btn-text');
+      downloadBtnText.innerHTML = currentLang === 'id' ? 'Download PDF' : 'Download PDF';
+
+      // Select all elements with data-en attribute
+      const transElements = document.querySelectorAll('[data-en]');
+      transElements.forEach(el => {
+        if (currentLang === 'en') {
+          if (!el.getAttribute('data-id')) {
+            el.setAttribute('data-id', el.innerHTML.trim());
+          }
+          el.innerHTML = el.getAttribute('data-en');
+        } else {
+          el.innerHTML = el.getAttribute('data-id');
+        }
+      });
     }
   </script>
 </body>

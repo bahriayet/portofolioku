@@ -43,9 +43,9 @@ function ProjectIcon({ iconId, gradientStart, gradientEnd }) {
   );
 }
 
-const ALL_FILTER = 'Semua';
+const ALL_FILTER = 'ALL';
 
-function Projects({ projects }) {
+function Projects({ projects, t }) {
   // Kumpulkan semua kategori unik
   const categories = [ALL_FILTER, ...new Set(projects.map((p) => p.category))];
   const [activeFilter, setActiveFilter] = useState(ALL_FILTER);
@@ -59,7 +59,7 @@ function Projects({ projects }) {
     <section id="projects" className="projects-section">
       <div className="container">
         <Reveal>
-          <h2 className="section-title">Proyek Pilihan</h2>
+          <h2 className="section-title">{t.projectsHeading}</h2>
         </Reveal>
 
         {/* Filter Tabs */}
@@ -71,7 +71,7 @@ function Projects({ projects }) {
                 className={`filter-btn${activeFilter === cat ? ' active' : ''}`}
                 onClick={() => setActiveFilter(cat)}
               >
-                {cat}
+                {cat === ALL_FILTER ? t.projectsAll : cat}
               </button>
             ))}
           </div>

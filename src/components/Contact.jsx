@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Reveal from './Reveal';
 
-function Contact({ email, phone, location }) {
+function Contact({ email, phone, location, lang, t }) {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState({ type: null, message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,12 +14,18 @@ function Contact({ email, phone, location }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus({ type: 'error', message: 'Semua kolom wajib diisi!' });
+      setFormStatus({
+        type: 'error',
+        message: lang === 'id' ? 'Semua kolom wajib diisi!' : 'All fields are required!',
+      });
       return;
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      setFormStatus({ type: 'error', message: 'Format email tidak valid!' });
+      setFormStatus({
+        type: 'error',
+        message: lang === 'id' ? 'Format email tidak valid!' : 'Invalid email format!',
+      });
       return;
     }
 
@@ -30,7 +36,7 @@ function Contact({ email, phone, location }) {
       setIsSubmitting(false);
       setFormStatus({
         type: 'success',
-        message: 'Pesan Anda berhasil dikirim! Terima kasih telah menghubungi saya.',
+        message: t.contactFormSuccess,
       });
       setFormData({ name: '', email: '', message: '' });
     }, 1500);
@@ -48,7 +54,7 @@ function Contact({ email, phone, location }) {
       ),
     },
     {
-      label: 'Telepon',
+      label: lang === 'id' ? 'Telepon' : 'Phone',
       value: phone,
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -57,7 +63,7 @@ function Contact({ email, phone, location }) {
       ),
     },
     {
-      label: 'Lokasi',
+      label: lang === 'id' ? 'Lokasi' : 'Location',
       value: location,
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -72,16 +78,17 @@ function Contact({ email, phone, location }) {
     <section id="contact" className="contact-section">
       <div className="container">
         <Reveal>
-          <h2 className="section-title">Hubungi Saya</h2>
+          <h2 className="section-title">{t.contactHeading}</h2>
         </Reveal>
         <div className="contact-grid">
           {/* Info */}
           <Reveal direction="left" delay={100}>
             <div className="contact-info glass-panel">
-              <h3>Mari Berdiskusi</h3>
+              <h3>{lang === 'id' ? 'Mari Berdiskusi' : "Let's Connect"}</h3>
               <p>
-                Punya proyek menarik atau ingin berkolaborasi? Jangan ragu untuk mengirim pesan kepada
-                saya. Saya selalu terbuka untuk kesempatan kerja sama baru.
+                {lang === 'id'
+                  ? 'Punya proyek menarik atau ingin berkolaborasi? Jangan ragu untuk mengirim pesan kepada saya. Saya selalu terbuka untuk kesempatan kerja sama baru.'
+                  : 'Have an interesting project or want to collaborate? Feel free to send me a message. I am always open to new opportunities.'}
               </p>
               <div className="contact-details">
                 {contactDetails.map(({ label, value, icon }) => (
@@ -100,7 +107,7 @@ function Contact({ email, phone, location }) {
           {/* Form */}
           <Reveal direction="right" delay={200}>
             <div className="contact-form-wrapper glass-panel">
-              <h3>Kirim Pesan</h3>
+              <h3>{lang === 'id' ? 'Kirim Pesan' : 'Send Message'}</h3>
 
               {formStatus.type && (
                 <div className={`form-alert alert-${formStatus.type}`} id="form-alert-msg">
@@ -110,39 +117,43 @@ function Contact({ email, phone, location }) {
 
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-group">
-                  <label htmlFor="name-input">Nama Lengkap</label>
+                  <label htmlFor="name-input">{t.contactFormName}</label>
                   <input
                     type="text"
                     id="name-input"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="Nama Anda"
+                    placeholder={lang === 'id' ? 'Nama Anda' : 'Your Name'}
                     required
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email-input">Alamat Email</label>
+                  <label htmlFor="email-input">{t.contactFormEmail}</label>
                   <input
                     type="email"
                     id="email-input"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="nama@email.com"
+                    placeholder="name@example.com"
                     required
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message-input">Pesan Anda</label>
+                  <label htmlFor="message-input">{t.contactFormMsg}</label>
                   <textarea
                     id="message-input"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Tuliskan pesan atau ide kolaborasi Anda di sini..."
+                    placeholder={
+                      lang === 'id'
+                        ? 'Tuliskan pesan atau ide kolaborasi Anda di sini...'
+                        : 'Write your message or collaboration ideas here...'
+                    }
                     rows="5"
                     required
                   />
@@ -159,11 +170,11 @@ function Contact({ email, phone, location }) {
                       <svg className="spinner" viewBox="0 0 24 24" width="20" height="20">
                         <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="3" strokeDasharray="30 10" />
                       </svg>
-                      Mengirim...
+                      {t.contactFormSending}
                     </>
                   ) : (
                     <>
-                      Kirim Pesan
+                      {t.contactFormSend}
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <line x1="22" y1="2" x2="11" y2="13" />
                         <polygon points="22 2 15 22 11 13 2 9 22 2" />

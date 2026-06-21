@@ -1,17 +1,17 @@
-function Navbar({ activeSection, isMobileMenuOpen, setIsMobileMenuOpen, theme, toggleTheme }) {
+function Navbar({ activeSection, isMobileMenuOpen, setIsMobileMenuOpen, theme, toggleTheme, lang, toggleLang, t }) {
   const navLinks = [
-    { href: '#home', label: 'Home', id: 'home' },
-    { href: '#about', label: 'Tentang', id: 'about' },
-    { href: '#projects', label: 'Proyek', id: 'projects' },
-    { href: '#experience', label: 'Pengalaman', id: 'experience' },
-    { href: '#contact', label: 'Kontak', id: 'contact' },
+    { href: '#home', label: t.navHome, id: 'home' },
+    { href: '#about', label: t.navAbout, id: 'about' },
+    { href: '#projects', label: t.navProjects, id: 'projects' },
+    { href: '#experience', label: t.navExperience, id: 'experience' },
+    { href: '#contact', label: t.navContact, id: 'contact' },
   ];
 
   return (
     <header className="navbar-header glass-panel">
       <div className="container nav-container">
         <a href="#home" className="logo-brand">
-          <span>Portofolio</span>ku
+          <span>{lang === 'id' ? 'Portofolio' : 'Portfolio'}</span>{lang === 'id' ? 'ku' : ''}
         </a>
 
         {/* Desktop Nav */}
@@ -24,6 +24,16 @@ function Navbar({ activeSection, isMobileMenuOpen, setIsMobileMenuOpen, theme, t
         </nav>
 
         <div className="nav-controls">
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLang}
+            className="lang-toggle-btn"
+            aria-label="Toggle Language"
+            id="lang-toggler"
+          >
+            {lang === 'id' ? 'EN' : 'ID'}
+          </button>
+
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}

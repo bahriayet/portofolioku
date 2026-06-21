@@ -1,11 +1,11 @@
 import Reveal from './Reveal';
 
-function Experience({ experience }) {
+function Experience({ experience, t }) {
   return (
     <section id="experience" className="experience-section">
       <div className="container">
         <Reveal>
-          <h2 className="section-title">Riwayat Karir</h2>
+          <h2 className="section-title">{t.experienceHeading}</h2>
         </Reveal>
         <div className="timeline-container">
           <div className="timeline-line"></div>
