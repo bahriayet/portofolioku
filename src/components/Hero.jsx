@@ -11,7 +11,8 @@ function Hero({ data, lang, t }) {
         <div className="hero-content">
           <div className="badge-welcome">{lang === 'id' ? 'Halo, Selamat Datang!' : 'Hello, Welcome!'}</div>
           <h1>
-            Saya <span className="gradient-text">{name}</span>
+            {lang === 'id' ? 'Saya ' : "I'm "}
+            <span className="gradient-text">{name}</span>
           </h1>
           <h2 className="hero-subtitle">
             {lang === 'id' ? 'Seorang ' : 'A '}
