@@ -7,12 +7,13 @@ export const portfolioOwner = {
   title: 'TypeScript & Full-Stack Developer',
   words: ['TypeScript Developer', 'Full-Stack Developer', 'IoT Enthusiast', 'Problem Solver'],
   bio: 'Saya adalah seorang Full-Stack Developer yang antusias dalam mengembangkan aplikasi web modern dan IoT. Saya berpengalaman menggunakan TypeScript, React, dan Node.js untuk membangun solusi terpusat yang interaktif dan ramah pengguna.',
-  email: 'bahriayet@gmail.com',
-  phone: '+62 812-3456-7890',
+  email: 'muhammadbahri270899@gmail.com',
+  phone: '+62 822-3530-8936',
   location: 'Indonesia',
   github: 'https://github.com/bahriayet',
   linkedin: 'https://linkedin.com/in/bahriayet',
   twitter: 'https://twitter.com/bahriayet',
+  avatar: '/avatar.jpg', // Path ke gambar avatar Anda di folder public/avatar.jpg
   skills: {
     frontend: ['HTML5 & CSS3', 'JavaScript (ES6+)', 'TypeScript', 'React.js', 'Responsive Web Design'],
     backend: ['Node.js', 'Express.js', 'REST APIs', 'PostgreSQL', 'MongoDB'],
@@ -43,6 +44,19 @@ export const portfolioOwner = {
   ],
   projects: [
     {
+      title: 'Praktek Gigi & Mulut',
+      category: 'Healthcare Service',
+      description:
+        'Sistem pendaftaran dan antrean online untuk Klinik Gigi dan Mulut, mengoptimalkan penjadwalan pasien secara real-time.',
+      tech: ['React.js', 'TypeScript', 'Tailwind CSS', 'Node.js'],
+      github: 'https://github.com/bahriayet/praktek-gigi-dan-mulut',
+      liveLink: 'https://praktek-gigi-dan-mulut.vercel.app',
+      gradientStart: '#00b4d8',
+      gradientEnd: '#4cc9f0',
+      iconId: 'smart-facility',
+      image: '/projects/praktek-gigi.png',
+    },
+    {
       title: 'ZenSpace Web',
       category: 'Relaxation & Wellness App',
       description:
@@ -67,19 +81,6 @@ export const portfolioOwner = {
       gradientEnd: '#ff7b00',
       iconId: 'nusashop',
       image: '/projects/nusabay.png',
-    },
-    {
-      title: 'Praktek Gigi & Mulut',
-      category: 'Healthcare Service',
-      description:
-        'Sistem pendaftaran dan antrean online untuk Klinik Gigi dan Mulut, mengoptimalkan penjadwalan pasien secara real-time.',
-      tech: ['React.js', 'TypeScript', 'Tailwind CSS', 'Node.js'],
-      github: 'https://github.com/bahriayet/praktek-gigi-dan-mulut',
-      liveLink: 'https://praktek-gigi-dan-mulut.vercel.app',
-      gradientStart: '#00b4d8',
-      gradientEnd: '#4cc9f0',
-      iconId: 'smart-facility',
-      image: '/projects/praktek-gigi.png',
     },
   ],
 };

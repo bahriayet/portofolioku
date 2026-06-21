@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+copy-images.js
+src/assets/hero.png
 
 # Editor directories and files
 .vscode/*

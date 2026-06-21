@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import Typewriter from './Typewriter';
 
 function Hero({ data }) {
-  const { name, words, bio, github, linkedin, twitter } = data;
+  const { name, words, bio, github, linkedin, twitter, avatar } = data;
+  const [imageError, setImageError] = useState(false);
 
   return (
     <section id="home" className="hero-section">
@@ -23,10 +25,11 @@ function Hero({ data }) {
             <a href="#projects" className="btn btn-secondary" id="cta-projects">
               Lihat Proyek
             </a>
-            {/* Tombol Download CV — ganti href dengan link CV kamu */}
+            {/* Tombol Download CV */}
             <a
-              href="/nama-file-cv-kamu.pdf"
-              download
+              href="/cv-bahri-muhammad.html"
+              target="_blank"
+              rel="noreferrer"
               className="btn btn-outline-cv"
               id="cta-download-cv"
               aria-label="Download CV"
@@ -76,18 +79,32 @@ function Hero({ data }) {
               <circle cx="100" cy="100" r="95" stroke="url(#avatar-grad)" strokeWidth="3" fill="none" strokeDasharray="300 20" className="spin-slow" />
               <circle cx="100" cy="100" r="90" fill="rgba(16, 12, 28, 0.4)" />
               <g clipPath="url(#avatar-clip)">
-                <path d="M50 170C50 145 70 135 100 135C130 135 150 145 150 170" fill="#e0e0e0" stroke="url(#avatar-grad)" strokeWidth="3" />
-                <path d="M65 170C65 155 80 148 100 148C120 148 135 155 135 170" fill="var(--primary)" opacity="0.6" />
-                <circle cx="100" cy="95" r="32" fill="#ffd1b3" />
-                <path d="M68 92C65 85 68 70 80 62C92 54 112 55 124 64C132 70 135 80 132 90C128 75 118 70 100 75C85 79 74 85 68 92Z" fill="#2d1a47" />
-                <rect x="80" y="58" width="40" height="15" rx="5" fill="#2d1a47" />
-                <rect x="75" y="85" width="22" height="16" rx="4" stroke="#ffffff" strokeWidth="3" fill="rgba(255, 255, 255, 0.15)" />
-                <rect x="103" y="85" width="22" height="16" rx="4" stroke="#ffffff" strokeWidth="3" fill="rgba(255, 255, 255, 0.15)" />
-                <line x1="97" y1="92" x2="103" y2="92" stroke="#ffffff" strokeWidth="3" />
-                <path d="M96 112C96 115 104 115 104 112" stroke="#e0997a" strokeWidth="2.5" strokeLinecap="round" />
-                <text x="35" y="60" fill="var(--secondary)" fontFamily="var(--font-mono)" fontSize="12" fontWeight="bold">&lt;code&gt;</text>
-                <text x="125" y="145" fill="var(--primary)" fontFamily="var(--font-mono)" fontSize="12" fontWeight="bold">{'{JS}'}</text>
-                <text x="120" y="80" fill="#22c55e" fontFamily="var(--font-mono)" fontSize="10" fontWeight="bold">&lt;/&gt;</text>
+                {avatar && !imageError ? (
+                  <image 
+                    href={avatar} 
+                    x="10" 
+                    y="10" 
+                    width="180" 
+                    height="180" 
+                    preserveAspectRatio="xMidYMid slice" 
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <>
+                    <path d="M50 170C50 145 70 135 100 135C130 135 150 145 150 170" fill="#e0e0e0" stroke="url(#avatar-grad)" strokeWidth="3" />
+                    <path d="M65 170C65 155 80 148 100 148C120 148 135 155 135 170" fill="var(--primary)" opacity="0.6" />
+                    <circle cx="100" cy="95" r="32" fill="#ffd1b3" />
+                    <path d="M68 92C65 85 68 70 80 62C92 54 112 55 124 64C132 70 135 80 132 90C128 75 118 70 100 75C85 79 74 85 68 92Z" fill="#2d1a47" />
+                    <rect x="80" y="58" width="40" height="15" rx="5" fill="#2d1a47" />
+                    <rect x="75" y="85" width="22" height="16" rx="4" stroke="#ffffff" strokeWidth="3" fill="rgba(255, 255, 255, 0.15)" />
+                    <rect x="103" y="85" width="22" height="16" rx="4" stroke="#ffffff" strokeWidth="3" fill="rgba(255, 255, 255, 0.15)" />
+                    <line x1="97" y1="92" x2="103" y2="92" stroke="#ffffff" strokeWidth="3" />
+                    <path d="M96 112C96 115 104 115 104 112" stroke="#e0997a" strokeWidth="2.5" strokeLinecap="round" />
+                    <text x="35" y="60" fill="var(--secondary)" fontFamily="var(--font-mono)" fontSize="12" fontWeight="bold">&lt;code&gt;</text>
+                    <text x="125" y="145" fill="var(--primary)" fontFamily="var(--font-mono)" fontSize="12" fontWeight="bold">{'{JS}'}</text>
+                    <text x="120" y="80" fill="#22c55e" fontFamily="var(--font-mono)" fontSize="10" fontWeight="bold">&lt;/&gt;</text>
+                  </>
+                )}
               </g>
             </svg>
           </div>
