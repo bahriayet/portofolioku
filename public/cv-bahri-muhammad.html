@@ -225,6 +225,16 @@
       color: var(--text-heading);
     }
     
+    /* CSS Page Break rules for PDF download and print */
+    .timeline-item, 
+    .skills-grid > div, 
+    .skill-group, 
+    .section-title, 
+    .header {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    
     /* Print Styles */
     @media print {
       body {
@@ -391,7 +401,7 @@
         </div>
       </div>
       
-      <div style="margin-top: 1rem;">
+      <div class="skill-group" style="margin-top: 1rem;">
         <div class="skill-category-title">Peralatan (Tools) & Lainnya</div>
         <div class="skill-list">
           <span class="skill-tag">Git & GitHub</span>
@@ -421,7 +431,8 @@
         filename:     'cv-bahri-muhammad.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2, useCORS: true, logging: false },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['css', 'legacy'] }
       };
 
       if (typeof html2pdf !== 'undefined') {
