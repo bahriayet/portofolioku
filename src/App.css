@@ -1096,8 +1096,10 @@
   margin-bottom: 1.5rem;
 }
 
-/* Fade edges */
 .ticker-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(
     to right,
@@ -1122,13 +1124,23 @@
   animation: ticker-scroll 30s linear infinite;
 }
 
-.ticker-track:hover {
+.ticker-track-reverse {
+  animation: ticker-scroll-reverse 30s linear infinite;
+}
+
+.ticker-track:hover,
+.ticker-track-reverse:hover {
   animation-play-state: paused;
 }
 
 @keyframes ticker-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+@keyframes ticker-scroll-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 
 .ticker-item {
