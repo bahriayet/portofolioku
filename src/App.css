@@ -12,6 +12,8 @@
   background-image: radial-gradient(var(--border-color) 1.2px, transparent 1.2px);
   background-size: 28px 28px;
   background-position: center;
+  overflow-x: hidden; /* Prevents elements and animations from causing horizontal overflow */
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -20,8 +22,9 @@
 .navbar-header {
   position: fixed;
   top: 1.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
+  left: 0;
+  right: 0;
+  width: calc(100% - 3rem);
   max-width: var(--max-width);
   margin: 0 auto;
   height: 70px;
@@ -1303,6 +1306,12 @@
 
 /* Tablet */
 @media (max-width: 768px) {
+  /* Disable horizontal reveal animations on mobile/tablet to prevent horizontal layout overflow */
+  .reveal.reveal-left,
+  .reveal.reveal-right {
+    transform: translateY(20px);
+  }
+
   section {
     padding: 4rem 0;
   }
@@ -1410,8 +1419,7 @@
   }
 
   .navbar-header {
-    left: 0.5rem;
-    right: 0.5rem;
+    width: calc(100% - 1rem);
     top: 0.5rem;
     padding: 0 0.5rem;
   }
