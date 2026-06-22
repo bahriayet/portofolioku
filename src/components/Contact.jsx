@@ -11,7 +11,7 @@ function Contact({ email, phone, location, lang, t }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       setFormStatus({
@@ -32,14 +32,41 @@ function Contact({ email, phone, location, lang, t }) {
     setIsSubmitting(true);
     setFormStatus({ type: null, message: '' });
 
-    setTimeout(() => {
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `Pesan Baru Portofolio dari ${formData.name}`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && (result.success === 'true' || result.success === true)) {
+        setIsSubmitting(false);
+        setFormStatus({
+          type: 'success',
+          message: t.contactFormSuccess || 'Pesan Anda berhasil dikirim!',
+        });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error(result.message || 'Gagal mengirim pesan');
+      }
+    } catch (error) {
+      console.error('Email send error:', error);
       setIsSubmitting(false);
       setFormStatus({
-        type: 'success',
-        message: t.contactFormSuccess,
+        type: 'error',
+        message: t.contactFormError || 'Terjadi kesalahan, silakan coba lagi.',
       });
-      setFormData({ name: '', email: '', message: '' });
-    }, 1500);
+    }
   };
 
   const contactDetails = [
