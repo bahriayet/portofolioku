@@ -1227,17 +1227,43 @@
    DOWNLOAD CV BUTTON (Hero)
    ========================================================================== */
 .btn-outline-cv {
-  background: transparent;
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
-  gap: 0.45rem;
+  position: relative;
+  background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+              linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+  color: var(--text-heading);
+  border: 1.5px solid transparent;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px -3px rgba(0, 180, 216, 0.15), var(--shadow-sm);
+  overflow: hidden;
+}
+
+.btn-outline-cv::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: left 0.75s ease;
+}
+
+.btn-outline-cv:hover::before {
+  left: 150%;
 }
 
 .btn-outline-cv:hover {
-  border-color: var(--primary-border);
-  color: var(--primary);
-  background: var(--primary-light);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  color: #ffffff !important;
+  background: linear-gradient(135deg, var(--primary), var(--secondary)) padding-box,
+              linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+  box-shadow: 0 10px 22px -5px rgba(170, 59, 255, 0.4), 0 4px 15px -5px rgba(0, 180, 216, 0.4);
 }
 
 /* ==========================================================================
