@@ -20,10 +20,10 @@
 .navbar-header {
   position: fixed;
   top: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 3rem);
+  left: 1.5rem;
+  right: 1.5rem;
   max-width: var(--max-width);
+  margin: 0 auto;
   height: 70px;
   z-index: 1000;
   border-radius: var(--border-radius-full);
@@ -34,7 +34,7 @@
 }
 
 .navbar-header:hover {
-  transform: translateX(-50%) !important; /* Prevents glass-panel:hover from translating Y */
+  transform: none !important; /* Disable hover translation to keep fixed header stable and centered */
   background: var(--bg-nav);
   box-shadow: var(--shadow-lg);
 }
@@ -1410,7 +1410,8 @@
   }
 
   .navbar-header {
-    width: calc(100% - 1rem);
+    left: 0.5rem;
+    right: 0.5rem;
     top: 0.5rem;
     padding: 0 0.5rem;
   }
