@@ -62,6 +62,7 @@
   color: var(--primary);
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -281,6 +282,7 @@
 .gradient-text {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
 }
@@ -910,6 +912,7 @@
   color: var(--primary);
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1098,6 +1101,7 @@
   letter-spacing: -0.03em;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1;
 }
