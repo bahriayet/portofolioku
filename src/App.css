@@ -184,6 +184,11 @@
   margin: 0 1rem;
   animation: slide-down-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transform-origin: top;
+  /* Improve mobile menu readability on top of page content */
+  background: var(--bg-card-hover) !important;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--border-color);
 }
 
 @keyframes slide-down-fade {
@@ -1338,6 +1343,12 @@
     display: flex;
   }
 
+  /* Projects grid adjustment to prevent overflow */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
   /* Timeline adjustment for mobile (convert to single column) */
   .timeline-line {
     left: 20px;
@@ -1393,9 +1404,35 @@
 
 /* Phone */
 @media (max-width: 480px) {
+  /* Reduce global container margin/padding on small viewports */
+  .container {
+    padding: 0 1rem;
+  }
+
   .navbar-header {
-    width: calc(100% - 1.5rem);
-    top: 0.75rem;
+    width: calc(100% - 1rem);
+    top: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .navbar-header .container {
+    padding: 0;
+  }
+
+  .logo-brand {
+    font-size: 1.2rem;
+  }
+
+  .nav-controls {
+    gap: 0.5rem;
+  }
+
+  .theme-toggle-btn,
+  .lang-toggle-btn,
+  .mobile-menu-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
   }
 
   .hero-actions {
@@ -1413,8 +1450,33 @@
     height: 260px;
   }
 
-  .about-bio, .about-skills, .contact-info, .contact-form-wrapper {
-    padding: 1.5rem;
+  /* Scale down huge heading to prevent awkward line breaks */
+  h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .about-bio,
+  .about-skills,
+  .contact-info,
+  .contact-form-wrapper {
+    padding: 1.25rem;
+  }
+
+  .project-info {
+    padding: 1.25rem;
+  }
+
+  .timeline-card {
+    padding: 1.25rem;
+  }
+
+  .contact-detail-item strong {
+    word-break: break-word;
+    font-size: 0.95rem;
+  }
+
+  .form-submit-btn {
+    width: 100%;
   }
 
   .footer-links {
