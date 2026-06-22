@@ -1029,6 +1029,7 @@
   opacity: 0;
   transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity; /* GPU acceleration optimizer for smoother rendering on mobile */
 }
 
 .reveal.reveal-up    { transform: translateY(40px); }
@@ -1336,6 +1337,11 @@
 
 /* Tablet */
 @media (max-width: 768px) {
+  /* Completely disable rendering of heavy glow filters on mobile to make scrolling butter-smooth */
+  .glow-accent {
+    display: none !important;
+  }
+
   /* Disable horizontal reveal animations on mobile/tablet to prevent horizontal layout overflow */
   .reveal.reveal-left,
   .reveal.reveal-right {
