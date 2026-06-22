@@ -60,7 +60,7 @@ function StatCard({ stat, index }) {
 function Stats({ t }) {
   const statsData = [
     {
-      value: 3,
+      value: 2,
       suffix: '+',
       label: t.statsExperience,
       icon: (
@@ -70,7 +70,7 @@ function Stats({ t }) {
       ),
     },
     {
-      value: 20,
+      value: 5,
       suffix: '+',
       label: t.statsProjects,
       icon: (
@@ -81,7 +81,7 @@ function Stats({ t }) {
       ),
     },
     {
-      value: 15,
+      value: 5,
       suffix: '+',
       label: t.statsClients,
       icon: (
